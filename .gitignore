@@ -1,0 +1,71 @@
+# =========================
+# Dependencies
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Environment
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+out/
+coverage/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Database / local state (important for your setup)
+# =========================
+*.sqlite
+*.db
+/data/
+state/
+runtime-state/
+
+# =========================
+# Agent system artifacts (OPTIONAL - depends on your strategy)
+# If you want reproducibility, you may KEEP docs tracked but ignore runtime outputs
+# =========================
+
+# Runtime generated reports (recommended)
+docs/test-reports/
+docs/review-reports/
+docs/deployment-reports/
+
+# Agent execution logs (optional depending on whether you want history tracked)
+docs/agents-log-runtime.md
+
+# =========================
+# Framework artifacts (keep versioned)
+# =========================
+!docs/
+!framework/
+
