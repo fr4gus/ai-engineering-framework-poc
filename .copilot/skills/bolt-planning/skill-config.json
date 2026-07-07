@@ -83,10 +83,15 @@
     "assign-bolts",
     "execute-bolt"
   ],
+  "invocations": [
+    "copilot /bolt-planning bootstrap",
+    "copilot /bolt-planning next",
+    "copilot /bolt-planning feature:NAME"
+  ],
   "documentation": {
-    "readme": "/home/fr4gus/.copilot/skills/bolt-planning/README.md",
-    "invocation_guide": "/home/fr4gus/.copilot/skills/bolt-planning/bolt-planning-invoke.md",
-    "implementation": "/home/fr4gus/.copilot/skills/bolt-planning/bolt-planning.sh"
+    "readme": "./bolt-planning/README.md",
+    "invocation_guide": "./bolt-planning/bolt-planning-invoke.md",
+    "implementation": "./bolt-planning/bolt-planning.sh"
   },
   "created_at": "2026-07-06",
   "last_updated": "2026-07-06"
