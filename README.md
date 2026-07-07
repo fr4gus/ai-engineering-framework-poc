@@ -79,4 +79,4 @@ Reference Application
 
 ## License
 
-TBD
+MIT
