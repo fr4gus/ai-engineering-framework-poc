@@ -1,0 +1,40 @@
+name: "Copilot Setup Steps"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Playwright for browser automation and testing
+        run: npm install -g playwright
+
+      - name: Install Playwright browsers
+        run: playwright install --with-deps
+
+      - name: Install GitHub MCP Server
+        run: npm install -g @modelcontextprotocol/server-github
+
+      - name: Verify installations
+        run: |
+          echo "Playwright version:"
+          playwright --version
+          echo "GitHub MCP Server installed successfully"

@@ -1,0 +1,93 @@
+{
+  "name": "bolt-planning",
+  "version": "1.0.0",
+  "description": "Orchestrates Planner and Engineering Manager agents to create and validate Bolt specifications",
+  "category": "workflow-orchestration",
+  "tags": ["bolt", "planning", "coordination", "planner", "engineering-manager"],
+  "owner": "Engineering Manager",
+  "status": "active",
+  "agents_involved": [
+    "Planner",
+    "Engineering Manager"
+  ],
+  "workflow": {
+    "phase1": "Analyze Current State - determine which Bolts to plan",
+    "phase2": "Invoke Planner Agent - decompose features into Bolts",
+    "phase3": "Invoke Engineering Manager Agent - validate and approve Bolts",
+    "phase4": "Store and Track - save results and update logs"
+  },
+  "modes": {
+    "bootstrap": {
+      "description": "Plan BOLT-001 through BOLT-008 from development plan",
+      "command": "copilot /bolt-planning bootstrap",
+      "use_when": "Starting from scratch, initial MVP planning",
+      "output": "8 approved, ready-to-execute bootstrap Bolts"
+    },
+    "next": {
+      "description": "Plan the next unplanned Bolt based on dependencies",
+      "command": "copilot /bolt-planning next",
+      "use_when": "Continuing after bootstrap, sequential planning",
+      "output": "Next Bolt specification, ready for assignment"
+    },
+    "feature": {
+      "description": "Plan Bolts for a specific feature",
+      "command": "copilot /bolt-planning feature:NAME",
+      "use_when": "Feature-focused planning or refactoring",
+      "output": "Feature-related Bolt specifications"
+    }
+  },
+  "inputs": {
+    "development_plan": "/docs/007-development-plan.md",
+    "prd": "/docs/001-prd.md",
+    "architecture": "/docs/004-architecture.md",
+    "conventions": "/docs/012-conventions.md",
+    "bolt_spec": "/docs/013-bolt-specification.md",
+    "bolt_template": "/docs/templates/bolt-template.md"
+  },
+  "outputs": {
+    "bolt_specifications": "/docs/bols/BOLT-XXX.md",
+    "agents_log_entry": "/docs/agents-log.md",
+    "validation_report": "EM approval status for each Bolt",
+    "metrics": "Planning duration, complexity, dependencies"
+  },
+  "key_decisions": {
+    "next_bolt_selection": "Based on dependencies, priorities, and readiness",
+    "complexity_validation": "No Bolt exceeds L complexity (split if needed)",
+    "dependency_validation": "Must form acyclic directed graph (DAG)",
+    "acceptance_criteria": "Must be objective, testable, Given/When/Then format"
+  },
+  "success_criteria": {
+    "planner_output": "8 complete Bolt specifications following template",
+    "em_validation": "All Bolts approved or rework requested",
+    "storage": "Bolts saved to /docs/bols/ with metadata",
+    "tracking": "Entry added to /docs/agents-log.md",
+    "readiness": "Bolts marked ready for execution assignment"
+  },
+  "failure_handling": {
+    "ambiguous_requirements": "Escalate to /docs/open-questions.md, await clarification",
+    "high_complexity": "Request Planner to split Bolt into smaller units",
+    "circular_dependencies": "Request Planner to re-scope and break cycle",
+    "missing_ac": "Request Planner to add testable acceptance criteria"
+  },
+  "metrics_tracked": [
+    "Planning duration",
+    "Complexity distribution (XS/S/M/L count)",
+    "Dependency depth (max chain length)",
+    "Rework iterations",
+    "Agent effectiveness"
+  ],
+  "phase1_task": "phase1-bolts",
+  "related_skills": [
+    "enhance-prompts",
+    "setup-dashboard",
+    "assign-bolts",
+    "execute-bolt"
+  ],
+  "documentation": {
+    "readme": "/home/fr4gus/.copilot/skills/bolt-planning/README.md",
+    "invocation_guide": "/home/fr4gus/.copilot/skills/bolt-planning/bolt-planning-invoke.md",
+    "implementation": "/home/fr4gus/.copilot/skills/bolt-planning/bolt-planning.sh"
+  },
+  "created_at": "2026-07-06",
+  "last_updated": "2026-07-06"
+}
