@@ -52,7 +52,8 @@ TESTER --> REVIEWER[Reviewer Agent]
 
 REVIEWER -->|Approved| ACCEPTED[Accepted]
 ACCEPTED --> PO_CLOSE[Product Owner Closure]
-REVIEWER -->|Rework| DEV
+REVIEWER -->|Rework Requested| EM_REWORK[EM Rework Triage]
+EM_REWORK --> DEV
 ```
 
 ---
@@ -146,8 +147,10 @@ A Bolt CANNOT proceed to Reviewer unless:
 Reviewer decision is final technical validation:
 
 - APPROVED → Bolt transitions to Accepted
-- REWORK → returns to Implementation
+- REWORK → Bolt transitions to Rework and the Engineering Manager assigns the required fixes back to the appropriate implementation agent
 - REJECTED → escalates to EM
+
+The Reviewer MUST NOT perform rework, directly patch implementation, or bypass the Engineering Manager handoff. Rework fixes are performed only by the assigned Backend, Frontend, or DevOps implementation agent.
 
 ---
 
@@ -232,6 +235,12 @@ Executed by Reviewer:
 - Validate test coverage
 - Decide outcome
 
+If the outcome is REWORK, the Reviewer must:
+- produce required actions in the Review Report
+- transition the Bolt to Rework
+- hand off to the Engineering Manager for rework triage
+- not implement the requested fixes
+
 ---
 
 ## Phase 7 — Closure Runtime
@@ -268,7 +277,9 @@ Tester must:
 
 ## 7.3 Review Failure
 
-→ Returns to Implementation OR EM escalation
+→ Transitions to Rework and returns to the Engineering Manager for triage.
+
+The Engineering Manager must assign the rework to the appropriate implementation agent. The implementation agent performs the fix, then the Bolt returns to Testing before Reviewer re-evaluation.
 
 ---
 

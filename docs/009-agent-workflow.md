@@ -52,7 +52,8 @@ DEV --> TEST[Tester]
 TEST --> REVIEWER[Reviewer]
 
 REVIEWER -->|Approved| ACCEPTED[Accepted]
-REVIEWER -->|Rework| DEV
+REVIEWER -->|Rework Requested| EM_REWORK[EM Rework Triage]
+EM_REWORK --> DEV
 
 ACCEPTED --> EM
 EM -->|Ready for Closure| PO
@@ -179,8 +180,12 @@ No Bolt may proceed without:
 ### Outcomes:
 
 - APPROVED → proceed to EM closure
-- REQUIRES REWORK → return to Implementation
+- REQUIRES REWORK → transition to Rework and hand off to Engineering Manager for reassignment to the appropriate implementation agent
 - REJECTED → escalated to EM
+
+### Rework Handoff Rule:
+
+The Reviewer must not implement requested fixes. The Engineering Manager owns rework triage and assigns the fix to the responsible Backend, Frontend, or DevOps agent. After rework is complete, the Bolt returns to Testing before another Review.
 
 ---
 
@@ -276,6 +281,7 @@ Accepted --> Closed
 ## Reviewer
 - Validates architectural and code quality
 - Approves or rejects implementation
+- Requests rework through the Engineering Manager rather than applying fixes directly
 
 ---
 

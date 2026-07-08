@@ -119,6 +119,8 @@ IMPLEMENTATION[Backend / Frontend / DevOps]
 
 The Reviewer MUST NOT implement code changes.
 
+When rework is required, the Reviewer MUST hand off the rework request to the Engineering Manager. The Reviewer MUST NOT apply the fix, assign itself implementation work, or directly bypass EM triage.
+
 ---
 
 ## REVIEWER-RULE-002
@@ -192,6 +194,14 @@ One or more issues exist:
 - Minor convention violations
 - Maintainability concerns
 
+Required handoff:
+- Reviewer transitions the Bolt to Rework
+- Reviewer records concrete required actions in the Review Report
+- Reviewer notifies Engineering Manager for rework triage
+- Engineering Manager assigns the fix to the responsible implementation agent
+- Implementation agent performs the fix
+- Tester revalidates before Reviewer re-review
+
 ---
 
 ## REJECTED
@@ -240,6 +250,7 @@ The Reviewer escalates to:
 ## Engineering Manager
 - Blocked review due to missing artifacts
 - Cross-agent conflicts
+- Any REQUIRES REWORK decision requiring implementation follow-up
 
 ## Product Owner (via EM)
 - If scope mismatch is discovered
@@ -271,6 +282,7 @@ A Reviewer task is complete when:
 - Issues (if any) are documented
 - EM is notified
 - Bolt is transitioned appropriately
+- For REQUIRES REWORK, the handoff target is Engineering Manager and no fix has been applied by Reviewer
 
 ---
 

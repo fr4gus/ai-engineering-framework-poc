@@ -1,0 +1,60 @@
+<section class="auth-page" aria-labelledby="login-title">
+  <form class="auth-panel" [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+    <h1 id="login-title">Login</h1>
+    <p>Use your account to continue.</p>
+
+    <div class="form-field">
+      <label for="login-email">Email</label>
+      <input
+        id="login-email"
+        type="email"
+        autocomplete="email"
+        formControlName="email"
+        [attr.aria-invalid]="loginForm.controls.email.invalid && loginForm.controls.email.touched"
+        aria-describedby="login-email-error"
+      >
+      <span class="field-error" id="login-email-error" aria-live="polite">
+        @if (loginForm.controls.email.hasError('required') && loginForm.controls.email.touched) {
+          Email is required.
+        } @else if (loginForm.controls.email.hasError('email') && loginForm.controls.email.touched) {
+          Enter a valid email address.
+        }
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="login-password">Password</label>
+      <input
+        id="login-password"
+        type="password"
+        autocomplete="current-password"
+        formControlName="password"
+        [attr.aria-invalid]="loginForm.controls.password.invalid && loginForm.controls.password.touched"
+        aria-describedby="login-password-error"
+      >
+      <span class="field-error" id="login-password-error" aria-live="polite">
+        @if (loginForm.controls.password.hasError('required') && loginForm.controls.password.touched) {
+          Password is required.
+        }
+      </span>
+    </div>
+
+    @if (errorMessage) {
+      <p class="status-error" role="alert">{{ errorMessage }}</p>
+    }
+
+    <div class="button-row">
+      <button class="primary-button" type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Signing in...' : 'Login' }}
+      </button>
+      <button class="secondary-button" type="button" [disabled]="isSubmitting" (click)="loginWithGoogle()">
+        Google Sign-In
+      </button>
+    </div>
+
+    <div class="link-row">
+      <a routerLink="/password-reset">Forgot password?</a>
+      <a routerLink="/register">Register</a>
+    </div>
+  </form>
+</section>

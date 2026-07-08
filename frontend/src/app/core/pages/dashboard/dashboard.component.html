@@ -1,0 +1,10 @@
+<section class="dashboard-page" aria-labelledby="dashboard-title">
+  <div class="dashboard-panel">
+    <h1 id="dashboard-title">Dashboard</h1>
+    @if (currentUser$ | async; as currentUser) {
+      <p>Signed in as {{ currentUser.email }}.</p>
+    } @else {
+      <p>Checking authentication state.</p>
+    }
+  </div>
+</section>

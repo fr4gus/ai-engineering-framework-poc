@@ -31,6 +31,7 @@ The Engineering Manager is responsible for:
 - Assigning Bolts to appropriate agents
 - Ensuring readiness before execution starts
 - Tracking Bolt lifecycle state transitions
+- Triage Reviewer rework requests and route fixes back to the responsible implementation agent
 
 ## Workflow Governance
 - Enforcing Bolt lifecycle rules
@@ -140,6 +141,18 @@ EM --> PO
 - Monitor Bolt progress
 - Detect blocked or stalled Bolts
 - Request clarification or escalation when needed
+
+## 6.3.1 Rework Triage Phase
+
+- Receive REQUIRES REWORK decisions from Reviewer
+- Confirm the Bolt is in Rework state
+- Identify the responsible implementation agent:
+  - Backend for server-side, API, data, or domain issues
+  - Frontend for UI, routing, client state, or API-consumption issues
+  - DevOps for build, environment, deployment, or operational issues
+- Assign the required fixes back to that implementation agent
+- Ensure the Bolt returns to Testing after rework is complete
+- Prevent Reviewer or EM from applying implementation fixes directly
 
 ---
 
@@ -252,6 +265,8 @@ If a Bolt is blocked:
   - Planner → scope issues
   - Architect → design issues
   - Backend/Frontend → implementation issues
+
+Reviewer rework requests must be triaged by EM before implementation resumes. EM may reassign the original implementation agent or choose another implementation agent only when the ownership boundary clearly supports it.
 
 ---
 
