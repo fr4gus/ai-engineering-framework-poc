@@ -46,11 +46,13 @@ ARCH --> EM_APPROVAL[EM Approval]
 
 EM_APPROVAL --> ASSIGN[Assignment]
 
-ASSIGN --> DEV[Implementation Agent]
+ASSIGN --> BRANCH[Bolt Branch Ready]
+BRANCH --> DEV[Implementation Agent]
 DEV --> TESTER[Tester Agent]
 TESTER --> REVIEWER[Reviewer Agent]
 
-REVIEWER -->|Approved| EM_CLOSE[Engineering Manager Close]
+REVIEWER -->|Approved| EM_PR[Engineering Manager Creates PR]
+EM_PR --> EM_CLOSE[Engineering Manager Close]
 REVIEWER -->|Rework| DEV
 ```
 
@@ -69,7 +71,8 @@ Assigned --> InProgress
 InProgress --> Testing
 Testing --> Review
 Review --> Rework
-Review --> Closed
+Review --> Accepted
+Accepted --> Closed
 ```
 
 ---
@@ -159,6 +162,32 @@ Only Engineering Manager can:
 
 ---
 
+## RULE R8 — Bolt Branch Required for Implementation
+
+Every implementation Bolt MUST be executed on a dedicated Bolt Branch.
+
+The Bolt Branch name MUST match the Bolt name recorded in the Bolt specification.
+
+All source, test, prompt, and documentation changes for the Bolt MUST be made only on that branch.
+
+If the branch is missing, unsafe, or already contains unrelated work, the implementation agent MUST escalate to the Engineering Manager before changing files.
+
+---
+
+## RULE R9 — Accepted Bolts Require an EM Pull Request
+
+When a Bolt is completed and accepted, the Engineering Manager MUST create the pull request from the Bolt Branch.
+
+The PR description MUST include:
+
+- Detailed explanation of changes made
+- Problems found during implementation, testing, or review
+- Rework performed and how each issue was fixed
+- Validation performed
+- Links or references to related test and review reports when available
+
+---
+
 # 6. Runtime Execution Phases
 
 ---
@@ -191,6 +220,7 @@ Executed by Engineering Manager:
 - Confirm completeness
 - Ensure readiness for execution
 - Assign implementation agents
+- Record the Bolt Branch name from the Bolt name
 
 ---
 
@@ -205,6 +235,8 @@ Rules:
 - Must follow Bolt scope only
 - Must not modify acceptance criteria
 - Must log implementation decisions
+- Must create or check out the Bolt Branch before changing files
+- Must keep all Bolt changes on the Bolt Branch
 
 ---
 
@@ -235,6 +267,8 @@ Executed by Reviewer:
 Executed by EM:
 
 - Confirm Tester + Reviewer approval
+- Create pull request from the Bolt Branch after acceptance
+- Include detailed changes, problems, rework, fixes, and validation in the PR description
 - Close Bolt
 - Record metrics
 - Finalize logs
@@ -285,9 +319,12 @@ Every runtime action emits an event:
   "event_type": "STATE_TRANSITION",
   "from": "InProgress",
   "to": "Testing",
+  "branch_name": "BOLT-001-game-shell",
   "message": "All test cases executed successfully"
 }
 ```
+
+Implementation and closure events MUST include `branch_name`. Closure events MUST include a pull request reference when the PR exists.
 
 ---
 

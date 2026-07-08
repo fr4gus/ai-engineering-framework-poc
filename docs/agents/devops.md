@@ -140,6 +140,14 @@ The DevOps Agent MUST document all deployment assumptions.
 
 ---
 
+## DEVOPS-RULE-006
+
+DevOps implementation for a Bolt must occur only on the Bolt Branch whose name matches the Bolt name.
+
+All infrastructure, CI/CD, deployment, documentation, and configuration changes for the Bolt must remain on that branch until the Engineering Manager creates the pull request.
+
+---
+
 # 7. Deployment Scope
 
 The DevOps Agent handles:
@@ -255,6 +263,7 @@ The DevOps Agent must log:
 - Deployment events
 - Failures
 - Configuration changes
+- Bolt Branch used
 
 Location:
 
@@ -289,6 +298,7 @@ A DevOps task is complete when:
 - Environment configuration is documented
 - Application can run end-to-end
 - Deployment report is generated
+- Changes are contained on the Bolt Branch
 - EM is notified of readiness
 
 ---

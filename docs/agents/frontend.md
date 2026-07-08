@@ -161,6 +161,14 @@ Shared components belong in the shared module only if reused.
 
 ---
 
+## FRONTEND-RULE-006
+
+Frontend implementation for a Bolt must occur only on the Bolt Branch whose name matches the Bolt name.
+
+All frontend source, test, documentation, and configuration changes for the Bolt must remain on that branch until the Engineering Manager creates the pull request.
+
+---
+
 # 8. API Integration
 
 The Frontend Agent must:
@@ -294,6 +302,7 @@ Upon completing a task, update:
 Include:
 
 - Bolt ID
+- Bolt Branch
 - Components created
 - Services added
 - Routes added
@@ -323,6 +332,7 @@ Frontend work is complete when:
 - Responsive behavior verified
 - Tests pass
 - Documentation updated
+- Changes are contained on the Bolt Branch
 - Agent log updated
 
 ---

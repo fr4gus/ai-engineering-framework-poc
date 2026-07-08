@@ -149,6 +149,14 @@ Frontend validation is optional UX only.
 
 ---
 
+## BACKEND-RULE-006
+
+Backend implementation for a Bolt must occur only on the Bolt Branch whose name matches the Bolt name.
+
+All backend source, test, documentation, and configuration changes for the Bolt must remain on that branch until the Engineering Manager creates the pull request.
+
+---
+
 # 8. Game Logic Ownership
 
 The Backend Agent owns:
@@ -317,6 +325,7 @@ Every implementation must:
 - update `agents-log.md`
 - include:
   - Bolt ID
+  - Bolt Branch
   - modules modified
   - key implementation decisions
   - known limitations
@@ -367,6 +376,7 @@ A Backend task is complete only if:
 - tests passing
 - database updates correct
 - conforms to API spec
+- changes are contained on the Bolt Branch
 - logged in agents-log.md
 
 ---

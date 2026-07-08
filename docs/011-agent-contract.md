@@ -137,6 +137,20 @@ Examples:
 
 ---
 
+# Branching Requirements
+
+Every implementation agent must work only on the assigned Bolt Branch.
+
+The Bolt Branch name must match the Bolt name recorded in the Bolt specification.
+
+All code, tests, prompts, documentation, and configuration changes for a Bolt must be made on that Bolt Branch.
+
+If the assigned branch is missing, unsafe, or appears to contain unrelated work, the agent must escalate to the Engineering Manager before changing files.
+
+The Engineering Manager creates the pull request only after the Bolt is completed and accepted.
+
+---
+
 # Documentation Responsibilities
 
 Agents must update documentation whenever implementation changes affect:

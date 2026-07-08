@@ -50,10 +50,12 @@ Each Bolt must display:
 
 - Bolt ID
 - Title
+- Bolt Branch
 - Current State
 - Assigned Agent(s)
 - Complexity
 - Blocker status
+- Pull request status, when applicable
 
 ---
 
@@ -101,6 +103,7 @@ Each card includes:
 
 - Bolt ID
 - Title
+- Bolt Branch
 - Assigned agent
 - Status indicators
 
@@ -174,6 +177,8 @@ The dashboard is updated based on:
 - Tester results
 - Reviewer decisions
 - EM assignments
+- Bolt Branch creation or verification
+- Pull request creation after acceptance
 
 ---
 
@@ -205,6 +210,7 @@ Updates should reflect:
 Every UI element must be traceable to:
 
 - Bolt ID
+- Bolt Branch
 - Agent action
 - Log entry
 

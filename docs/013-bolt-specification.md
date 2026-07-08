@@ -127,7 +127,9 @@ Every Bolt must define:
 
 ```yaml
 Bolt ID:
+Bolt Name:
 Title:
+Bolt Branch:
 Status:
 Priority:
 Type:
@@ -229,6 +231,7 @@ Each completed Bolt should generate:
 - Test Report
 - Review Report
 - Agent Log entry
+- Pull Request created by the Engineering Manager after acceptance
 
 Optional:
 
@@ -268,6 +271,22 @@ Circular dependencies are not permitted.
 
 ---
 
+## 13.1 Bolt Branch Rules
+
+Every implementation Bolt must define a Bolt Branch.
+
+The Bolt Name is the repository-safe, stable Bolt identifier used for git branch naming. It may differ from the human-readable Title.
+
+The Bolt Branch name MUST match the Bolt Name.
+
+All changes for the Bolt, including source code, tests, prompts, documentation, and supporting configuration, must be made on the Bolt Branch.
+
+If the Bolt Name cannot be used safely as a git branch name, the Engineering Manager must resolve the Bolt Name before assigning the Bolt.
+
+The Bolt Branch remains the sole change branch until the Bolt is accepted and the Engineering Manager creates the pull request.
+
+---
+
 # 14. State Transition Rules
 
 Only the appropriate role may move a Bolt between states.
@@ -276,12 +295,12 @@ Only the appropriate role may move a Bolt between states.
 |------------|------------------|
 | Draft → Planned | Planner |
 | Planned → Approved | Architect + Engineering Manager |
-| Approved → Assigned | Engineering Manager |
-| Assigned → In Progress | Implementation Agent |
+| Approved → Assigned | Engineering Manager; records Bolt Branch |
+| Assigned → In Progress | Implementation Agent; creates or checks out Bolt Branch |
 | In Progress → Testing | Implementation Agent |
 | Testing → Review | Tester |
 | Review → Accepted | Reviewer |
-| Accepted → Closed | Product Owner |
+| Accepted → Closed | Engineering Manager creates PR, then Product Owner accepts outcome |
 
 ---
 
@@ -335,6 +354,9 @@ A Bolt is complete only when:
 - Acceptance criteria are satisfied
 - Required tests pass
 - Review is approved
+- All changes are contained on the Bolt Branch
+- Engineering Manager creates a pull request from the Bolt Branch after acceptance
+- Pull request description explains changes, problems found, rework, fixes, and validation
 - Documentation is updated
 - Agent log is updated
 - Product Owner accepts the outcome

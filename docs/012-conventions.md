@@ -276,13 +276,23 @@ Soft deletes are not part of the MVP unless explicitly required.
 
 ## Branches
 
+Implementation work for a Bolt must use the Bolt Branch recorded in the Bolt specification.
+
+The Bolt Branch name must match the Bolt Name.
+
+The Bolt Name must be safe for use as a git branch. Use the human-readable Title for prose.
+
+Examples:
+
 ```
-feature/authentication
-feature/gameplay
-bugfix/leaderboard
-docs/prd
-refactor/statistics
+BOLT-001-game-shell
+BOLT-002-authentication-flow
+BOLT-003-leaderboard-api
 ```
+
+Generic branch prefixes such as `feature/`, `bugfix/`, `docs/`, and `refactor/` are reserved for non-Bolt repository maintenance only.
+
+All code, tests, prompts, documentation, and configuration changes for a Bolt must remain on its Bolt Branch until the Engineering Manager creates the pull request after acceptance.
 
 ---
 
@@ -457,6 +467,7 @@ A task is complete only when:
 * Tests pass.
 * Documentation is updated.
 * Traceability is maintained.
+* Bolt changes are contained on the recorded Bolt Branch.
 * Relevant ADRs are updated if needed.
 * `agents-log.md` has been updated.
 

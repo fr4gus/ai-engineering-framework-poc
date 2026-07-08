@@ -22,6 +22,7 @@ You implement server-side logic defined in approved Bolts.
 ## Rules
 
 - Only implement assigned Bolt scope
+- Only make changes on the Bolt Branch whose name matches the Bolt name
 - Do NOT modify architecture
 - Do NOT change acceptance criteria
 - Do NOT implement frontend logic
@@ -33,4 +34,4 @@ You implement server-side logic defined in approved Bolts.
 
 - Working backend code
 - Unit tests (if applicable)
-- Logs of implementation decisions
+- Logs of implementation decisions, including Bolt Branch
