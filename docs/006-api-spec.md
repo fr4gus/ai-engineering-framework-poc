@@ -4,7 +4,7 @@
 
 **Document ID:** API-001  
 **Version:** 1.0.0  
-**Status:** Draft  
+**Status:** Approved  
 **Owner:** Backend Architecture Team  
 
 ---
@@ -265,6 +265,8 @@ Submit a move.
 ## POST /attempts/{id}/complete
 
 Finalize attempt.
+
+This endpoint is called automatically by the frontend when the board is filled and the current puzzle state is a completion candidate. The player does not press a manual Submit button. The backend must validate the final state before accepting the score.
 
 ### Response
 

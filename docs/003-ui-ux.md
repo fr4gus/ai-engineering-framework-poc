@@ -6,7 +6,7 @@
 
 **Version:** 1.0.0
 
-**Status:** Draft
+**Status:** Approved
 
 ---
 
@@ -215,6 +215,12 @@ Replay
 Dashboard
 
 Leaderboard
+
+---
+
+## Completion Finalization
+
+The puzzle screen must not expose a Submit button. When the board becomes a completion candidate, the frontend automatically finalizes the attempt through the documented completion API and then routes to the Results screen if the backend accepts the solution.
 
 ---
 

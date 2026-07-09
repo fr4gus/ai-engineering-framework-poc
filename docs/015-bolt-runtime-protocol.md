@@ -51,9 +51,11 @@ BRANCH --> DEV[Implementation Agent]
 DEV --> TESTER[Tester Agent]
 TESTER --> REVIEWER[Reviewer Agent]
 
-REVIEWER -->|Approved| EM_PR[Engineering Manager Creates PR]
-EM_PR --> EM_CLOSE[Engineering Manager Close]
-REVIEWER -->|Rework| DEV
+REVIEWER -->|Approved| ACCEPTED[Accepted]
+ACCEPTED --> EM_PR[Engineering Manager Creates PR]
+EM_PR --> PO_CLOSE[Product Owner Closure]
+REVIEWER -->|Rework Requested| EM_REWORK[EM Rework Triage]
+EM_REWORK --> DEV
 ```
 
 ---
@@ -90,7 +92,7 @@ A Bolt MUST pass through:
 5. Implementation
 6. Tester
 7. Reviewer
-8. Engineering Manager closure
+8. Product Owner closure
 
 No step may be skipped.
 
@@ -146,19 +148,49 @@ A Bolt CANNOT proceed to Reviewer unless:
 
 Reviewer decision is final technical validation:
 
-- APPROVED → EM can close Bolt
-- REWORK → returns to Implementation
+- APPROVED → Bolt transitions to Accepted
+- REWORK → Bolt transitions to Rework and the Engineering Manager assigns the required fixes back to the appropriate implementation agent
 - REJECTED → escalates to EM
+
+The Reviewer MUST NOT perform rework, directly patch implementation, or bypass the Engineering Manager handoff. Rework fixes are performed only by the assigned Backend, Frontend, or DevOps implementation agent.
 
 ---
 
-## RULE R7 — EM is the Only Closure Authority
+## RULE R7 — Product Owner is the Closure Authority
 
-Only Engineering Manager can:
+Only the Product Owner can:
 
 - mark Bolt as CLOSED
-- finalize lifecycle
-- publish completion metrics
+- accept final product outcome
+- finalize lifecycle closure
+
+The Engineering Manager coordinates closure readiness and records metrics after Product Owner acceptance.
+
+---
+
+## RULE R8 — Bolt Branch Required for Implementation
+
+Every implementation Bolt MUST be executed on a dedicated Bolt Branch.
+
+The Bolt Branch name MUST match the Bolt name recorded in the Bolt specification.
+
+All source, test, prompt, and documentation changes for the Bolt MUST be made only on that branch.
+
+If the branch is missing, unsafe, or already contains unrelated work, the implementation agent MUST escalate to the Engineering Manager before changing files.
+
+---
+
+## RULE R9 — Accepted Bolts Require an EM Pull Request
+
+When a Bolt is completed and accepted, the Engineering Manager MUST create the pull request from the Bolt Branch.
+
+The PR description MUST include:
+
+- Detailed explanation of changes made
+- Problems found during implementation, testing, or review
+- Rework performed and how each issue was fixed
+- Validation performed
+- Links or references to related test and review reports when available
 
 ---
 
@@ -260,18 +292,25 @@ Executed by Reviewer:
 - Validate test coverage
 - Decide outcome
 
+If the outcome is REWORK, the Reviewer must:
+- produce required actions in the Review Report
+- transition the Bolt to Rework
+- hand off to the Engineering Manager for rework triage
+- not implement the requested fixes
+
 ---
 
 ## Phase 7 — Closure Runtime
 
-Executed by EM:
+Executed by Engineering Manager and Product Owner:
 
-- Confirm Tester + Reviewer approval
-- Create pull request from the Bolt Branch after acceptance
-- Include detailed changes, problems, rework, fixes, and validation in the PR description
-- Close Bolt
-- Record metrics
-- Finalize logs
+- EM confirms Tester + Reviewer approval
+- EM creates the pull request from the Bolt Branch after acceptance
+- EM includes detailed changes, problems, rework, fixes, and validation in the PR description
+- EM presents the Accepted Bolt and pull request to the Product Owner
+- Product Owner accepts final outcome
+- Product Owner closes Bolt
+- EM records metrics and finalizes logs after Product Owner closure
 
 ---
 
@@ -297,7 +336,9 @@ Tester must:
 
 ## 7.3 Review Failure
 
-→ Returns to Implementation OR EM escalation
+→ Transitions to Rework and returns to the Engineering Manager for triage.
+
+The Engineering Manager must assign the rework to the appropriate implementation agent. The implementation agent performs the fix, then the Bolt returns to Testing before Reviewer re-evaluation.
 
 ---
 

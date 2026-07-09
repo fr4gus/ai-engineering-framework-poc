@@ -29,10 +29,12 @@ DO --> TESTER
 
 TESTER --> REVIEWER[Reviewer Agent]
 
-REVIEWER -->|Approved| EM
+REVIEWER -->|Approved| ACCEPTED[Accepted]
 REVIEWER -->|Rework| BE
 
-EM --> CLOSE[Close Bolt]
+ACCEPTED --> EM[Engineering Manager]
+EM --> PO[Product Owner Closure]
+PO --> CLOSE[Close Bolt]
 ```
 
 ---
@@ -120,7 +122,8 @@ Assigned --> InProgress
 InProgress --> Testing
 Testing --> Review
 Review --> Rework
-Review --> Closed
+Review --> Accepted
+Accepted --> Closed
 ```
 
 ---

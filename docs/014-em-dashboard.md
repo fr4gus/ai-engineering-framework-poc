@@ -96,7 +96,7 @@ Planner → Architect → Implementation → Tester → Reviewer → EM
 A Kanban-style board:
 
 ```
-[ Draft ] → [ Approved ] → [ In Progress ] → [ Testing ] → [ Review ] → [ Closed ]
+[ Draft ] → [ Planned ] → [ Approved ] → [ Assigned ] → [ In Progress ] → [ Testing ] → [ Review ] → [ Accepted ] → [ Closed ]
 ```
 
 Each card includes:

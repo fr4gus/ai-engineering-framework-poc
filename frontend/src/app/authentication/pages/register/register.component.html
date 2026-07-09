@@ -1,0 +1,96 @@
+<section class="auth-page" aria-labelledby="register-title">
+  <form class="auth-panel" [formGroup]="registerForm" (ngSubmit)="submit()" novalidate>
+    <h1 id="register-title">Register</h1>
+    <p>Create an account for saved progress and protected features.</p>
+
+    <div class="form-field">
+      <label for="register-username">Username</label>
+      <input
+        id="register-username"
+        type="text"
+        autocomplete="username"
+        formControlName="username"
+        [attr.aria-invalid]="registerForm.controls.username.invalid && registerForm.controls.username.touched"
+        aria-describedby="register-username-error"
+      >
+      <span class="field-error" id="register-username-error" aria-live="polite">
+        @if (registerForm.controls.username.hasError('required') && registerForm.controls.username.touched) {
+          Username is required.
+        } @else if (registerForm.controls.username.hasError('minlength') && registerForm.controls.username.touched) {
+          Username must be at least 3 characters.
+        }
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="register-email">Email</label>
+      <input
+        id="register-email"
+        type="email"
+        autocomplete="email"
+        formControlName="email"
+        [attr.aria-invalid]="registerForm.controls.email.invalid && registerForm.controls.email.touched"
+        aria-describedby="register-email-error"
+      >
+      <span class="field-error" id="register-email-error" aria-live="polite">
+        @if (registerForm.controls.email.hasError('required') && registerForm.controls.email.touched) {
+          Email is required.
+        } @else if (registerForm.controls.email.hasError('email') && registerForm.controls.email.touched) {
+          Enter a valid email address.
+        }
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="register-password">Password</label>
+      <input
+        id="register-password"
+        type="password"
+        autocomplete="new-password"
+        formControlName="password"
+        [attr.aria-invalid]="registerForm.controls.password.invalid && registerForm.controls.password.touched"
+        aria-describedby="register-password-error"
+      >
+      <span class="field-error" id="register-password-error" aria-live="polite">
+        @if (registerForm.controls.password.hasError('required') && registerForm.controls.password.touched) {
+          Password is required.
+        } @else if (registerForm.controls.password.hasError('minlength') && registerForm.controls.password.touched) {
+          Password must be at least 8 characters.
+        }
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label for="register-confirm-password">Confirm password</label>
+      <input
+        id="register-confirm-password"
+        type="password"
+        autocomplete="new-password"
+        formControlName="confirmPassword"
+        [attr.aria-invalid]="registerForm.hasError('passwordsMismatch') && registerForm.controls.confirmPassword.touched"
+        aria-describedby="register-confirm-password-error"
+      >
+      <span class="field-error" id="register-confirm-password-error" aria-live="polite">
+        @if (registerForm.controls.confirmPassword.hasError('required') && registerForm.controls.confirmPassword.touched) {
+          Confirm your password.
+        } @else if (registerForm.hasError('passwordsMismatch') && registerForm.controls.confirmPassword.touched) {
+          Passwords must match.
+        }
+      </span>
+    </div>
+
+    @if (errorMessage) {
+      <p class="status-error" role="alert">{{ errorMessage }}</p>
+    }
+
+    <div class="button-row">
+      <button class="primary-button" type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Creating account...' : 'Register' }}
+      </button>
+    </div>
+
+    <div class="link-row">
+      <a routerLink="/login">Login</a>
+    </div>
+  </form>
+</section>

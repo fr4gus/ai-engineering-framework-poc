@@ -37,8 +37,8 @@ This framework investigates whether assigning specialized responsibilities to in
 docs/
 framework/
 evaluation/
-reference-apps/
-scripts/
+backend/
+frontend/
 ```
 
 ## Reference Applications
@@ -67,6 +67,109 @@ Framework Development
 Reference Application
 
 - ⏳ Binary Puzzle MVP
+- ✅ BOLT-001 Authentication Core scaffold
+
+## Running the Current App
+
+The repository currently contains the first reference-app implementation slice: the BOLT-001 authentication scaffold.
+
+The backend and frontend can be started locally, but the full browser authentication flow is not completely plug-and-play yet. Manual end-to-end login checks require real Firebase configuration, a running PostgreSQL database, and either a frontend API proxy or backend CORS/API URL configuration.
+
+What is checkable today:
+
+- Backend NestJS app starts and exposes authenticated API routes under `/api/v1`.
+- Backend Prisma migration creates the `User` table.
+- Frontend Angular app starts and shows the authentication UI scaffold.
+- Backend and frontend tests/builds can be run independently.
+
+What is not fully checkable without additional local configuration:
+
+- Complete browser login/register/Google Sign-In flow against the backend.
+- Real Firebase ID token validation.
+- Full frontend-to-backend API calls from the Angular dev server, because the frontend currently uses `/api/v1` and no Angular proxy or backend CORS setup is configured yet.
+
+### Prerequisites
+
+- Node.js and npm
+- PostgreSQL
+- Firebase project credentials for real authentication checks
+
+If you do not already have PostgreSQL running, one local option is:
+
+```bash
+docker run --name daily-logic-postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=daily_logic_challenge \
+  -p 5432:5432 \
+  -d postgres:16
+```
+
+### Backend
+
+From a terminal:
+
+```bash
+cd backend
+cp .env.example .env
+npm install
+npm run prisma:generate
+npm run prisma:migrate
+npm run start:dev
+```
+
+The default backend URL is:
+
+```text
+http://localhost:3000/api/v1
+```
+
+`backend/.env` must contain a valid `DATABASE_URL`. For real Firebase validation, also configure:
+
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_CLIENT_EMAIL`
+- `FIREBASE_PRIVATE_KEY`
+
+### Frontend
+
+From a second terminal:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+The default frontend URL is:
+
+```text
+http://localhost:4200
+```
+
+Firebase web configuration currently lives in:
+
+```text
+frontend/src/environments/environment.development.ts
+```
+
+The checked-in values are local placeholders. Replace them locally with real Firebase web app values if you want to manually exercise auth screens.
+
+### Validation Commands
+
+Backend:
+
+```bash
+cd backend
+npm test
+npm run build
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm test
+npm run build
+```
 
 ## Goals
 

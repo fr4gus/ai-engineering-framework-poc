@@ -4,9 +4,20 @@
 **Bolt Name:** (repository-safe branch name)
 **Title:**  
 **Bolt Branch:** (same as Bolt Name)
-**Type:** (Feature / Bug / Infra / Refactor / Research)  
-**Complexity:** (XS / S / M / L / XL)  
 **Status:** Draft  
+**Priority:**  
+**Type:** (Feature / Enhancement / Bug Fix / Technical Debt / Documentation / Infrastructure / Research / Refactoring)  
+**Created:**  
+**Last Updated:**  
+**Feature:**  
+**Requirement IDs:**  
+**Estimated Complexity:** (XS / S / M / L / XL)  
+**Dependencies:**  
+**Assigned Agents:**  
+**Reviewer:**  
+**Tester:**  
+**Target Bolt:**  
+**Related ADRs:**  
 
 ---
 
@@ -43,6 +54,17 @@
 
 ---
 
+# Deliverables
+- Source code
+- Tests
+- Documentation
+- Database migrations
+- API updates
+- ADRs
+- Deployment changes
+
+---
+
 # Acceptance Criteria
 
 ## AC-1
@@ -53,10 +75,25 @@ Given [...] When [...] Then [...]
 
 ---
 
-# Technical Notes
+# Implementation Notes
 - Implementation hints
 - Constraints
 - Edge cases
+
+---
+
+# Testing Notes
+- Required unit tests
+- Required integration tests
+- Required E2E tests
+- Manual validation notes
+
+---
+
+# Review Notes
+- Architecture review notes
+- Code quality notes
+- Convention notes
 
 ---
 
@@ -73,8 +110,8 @@ Given [...] When [...] Then [...]
 
 ---
 
-# Estimated Effort
-XS / S / M / L / XL
+# Completion Summary
+[Completed after Product Owner closure]
 
 ---
 

@@ -52,11 +52,14 @@ BRANCH --> DEV[Backend / Frontend / DevOps]
 DEV --> TEST[Tester]
 TEST --> REVIEWER[Reviewer]
 
-REVIEWER -->|Approved| EM
-REVIEWER -->|Rework| DEV
+REVIEWER -->|Approved| ACCEPTED[Accepted]
+REVIEWER -->|Rework Requested| EM_REWORK[EM Rework Triage]
+EM_REWORK --> DEV
 
+ACCEPTED --> EM
 EM --> PR[Create Bolt PR]
-PR -->|Closed| PO
+PR -->|Ready for Closure| PO
+PO -->|Closed| EM
 ```
 
 ---
@@ -188,15 +191,19 @@ The Bolt name is the repository-safe Bolt identifier, not necessarily the human-
 
 ### Outcomes:
 
-- APPROVED → proceed to EM closure
-- REQUIRES REWORK → return to Implementation
+- APPROVED → proceed to Accepted, EM pull request creation, and Product Owner closure
+- REQUIRES REWORK → transition to Rework and hand off to Engineering Manager for reassignment to the appropriate implementation agent
 - REJECTED → escalated to EM
+
+### Rework Handoff Rule:
+
+The Reviewer must not implement requested fixes. The Engineering Manager owns rework triage and assigns the fix to the responsible Backend, Frontend, or DevOps agent. After rework is complete, the Bolt returns to Testing before another Review.
 
 ---
 
 # 4.7 Closure Phase
 
-## Owner: Engineering Manager
+## Owner: Product Owner, coordinated by Engineering Manager
 
 ### Steps:
 
@@ -209,10 +216,10 @@ The Bolt name is the repository-safe Bolt identifier, not necessarily the human-
    - Problems found during implementation, testing, or review
    - How each problem was reworked and fixed
    - Validation performed
-4. EM marks Bolt as CLOSED
-5. Metrics are recorded
-6. Logs are finalized
-7. PO is notified
+4. EM presents the Accepted Bolt and pull request to the Product Owner
+5. Product Owner accepts or rejects final closure
+6. If accepted, Product Owner marks Bolt as CLOSED
+7. EM records metrics and finalizes logs
 
 ---
 
@@ -260,6 +267,7 @@ Accepted --> Closed
 - Assigns work
 - Tracks progress
 - Ensures consistency
+- Coordinates Product Owner closure
 
 ---
 
@@ -291,6 +299,7 @@ Accepted --> Closed
 ## Reviewer
 - Validates architectural and code quality
 - Approves or rejects implementation
+- Requests rework through the Engineering Manager rather than applying fixes directly
 
 ---
 
@@ -322,7 +331,25 @@ All state transitions must be logged.
 
 ## WF-RULE-005
 
-The Engineering Manager is the only agent allowed to close a Bolt.
+The Product Owner is the only role allowed to close a Bolt. The Engineering Manager coordinates closure readiness, creates the pull request after acceptance, and records metrics after Product Owner closure.
+
+---
+
+## WF-RULE-006
+
+Every Bolt implementation MUST occur on a Bolt Branch whose name matches the Bolt name.
+
+---
+
+## WF-RULE-007
+
+All changes for a Bolt MUST be made on its Bolt Branch until the Bolt is accepted and the Engineering Manager creates the pull request.
+
+---
+
+## WF-RULE-008
+
+When a Bolt is completed and accepted, the Engineering Manager MUST create the pull request and include detailed change, problem, rework, fix, and validation notes in the PR description.
 
 ---
 

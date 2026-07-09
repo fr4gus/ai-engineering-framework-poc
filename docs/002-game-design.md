@@ -4,9 +4,9 @@
 
 **Document ID:** GDD-001
 
-**Version:** 1.0.0 (Draft)
+**Version:** 1.0.0
 
-**Status:** Draft
+**Status:** Approved
 
 **Owner:** Product Team
 
@@ -303,6 +303,8 @@ The puzzle completes automatically when:
 
 - every cell is filled
 - every rule succeeds
+
+When the board becomes a completion candidate, the frontend automatically calls the documented completion API. The backend remains authoritative for final validation and score acceptance.
 
 The player never presses a Submit button.
 

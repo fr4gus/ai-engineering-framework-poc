@@ -103,3 +103,71 @@ Hints are excluded from the MVP.
 Players may replay puzzles without limit.
 
 Only the best score counts toward leaderboards.
+
+---
+
+## DEC-011
+
+**Date**
+
+2026-07-07
+
+**Status**
+
+Accepted
+
+**Decision**
+
+The canonical Bolt lifecycle is:
+
+Draft → Planned → Approved → Assigned → InProgress → Testing → Review → Accepted → Closed
+
+The Reviewer transitions approved work to Accepted. The Product Owner owns the final Accepted → Closed transition.
+
+---
+
+## DEC-012
+
+**Date**
+
+2026-07-07
+
+**Status**
+
+Accepted
+
+**Decision**
+
+Runnable agent prompts remain in `framework/prompts/*.md`. Each prompt must require the agent to load `docs/011-agent-contract.md` and its matching `docs/agents/*.md` specification before acting.
+
+---
+
+## DEC-013
+
+**Date**
+
+2026-07-07
+
+**Status**
+
+Accepted
+
+**Decision**
+
+Puzzle completion is finalized automatically. The frontend calls `POST /attempts/{id}/complete` when the board is a completion candidate; the backend performs final validation before accepting the score.
+
+---
+
+## DEC-014
+
+**Date**
+
+2026-07-07
+
+**Status**
+
+Accepted
+
+**Decision**
+
+The documentation baseline is approved through `BOLT-DOC-001`. Draft product, architecture, API, data, development, testing, and deployment documents are marked Approved after closure of that Bolt.

@@ -4,7 +4,7 @@
 
 **Document ID:** TEST-001  
 **Version:** 1.0.0  
-**Status:** Draft  
+**Status:** Approved  
 **Owner:** QA + Engineering Systems Team  
 
 ---

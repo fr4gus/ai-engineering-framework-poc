@@ -56,3 +56,10 @@ Notes:
 # Required Actions (if REWORK)
 - Action 1
 - Action 2
+
+---
+
+# Rework Handoff (if REWORK)
+- Handoff To: Engineering Manager
+- Recommended Implementation Agent:
+- Return State After Fix: Testing

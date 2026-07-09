@@ -55,10 +55,7 @@ runtime-state/
 # If you want reproducibility, you may KEEP docs tracked but ignore runtime outputs
 # =========================
 
-# Runtime generated reports (recommended)
-docs/test-reports/
-docs/review-reports/
-docs/deployment-reports/
+# Documentation report artifacts are versioned for Bolt traceability.
 
 # Agent execution logs (optional depending on whether you want history tracked)
 docs/agents-log-runtime.md

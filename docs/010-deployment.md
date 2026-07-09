@@ -4,7 +4,7 @@
 
 **Document ID:** DEPLOY-001  
 **Version:** 1.0.0  
-**Status:** Draft  
+**Status:** Approved  
 **Owner:** DevOps + Engineering Systems Team  
 
 ---
