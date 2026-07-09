@@ -194,6 +194,32 @@ The PR description MUST include:
 
 ---
 
+## RULE R8 — Bolt Branch Required for Implementation
+
+Every implementation Bolt MUST be executed on a dedicated Bolt Branch.
+
+The Bolt Branch name MUST match the Bolt name recorded in the Bolt specification.
+
+All source, test, prompt, and documentation changes for the Bolt MUST be made only on that branch.
+
+If the branch is missing, unsafe, or already contains unrelated work, the implementation agent MUST escalate to the Engineering Manager before changing files.
+
+---
+
+## RULE R9 — Accepted Bolts Require an EM Pull Request
+
+When a Bolt is completed and accepted, the Engineering Manager MUST create the pull request from the Bolt Branch.
+
+The PR description MUST include:
+
+- Detailed explanation of changes made
+- Problems found during implementation, testing, or review
+- Rework performed and how each issue was fixed
+- Validation performed
+- Links or references to related test and review reports when available
+
+---
+
 # 6. Runtime Execution Phases
 
 ---

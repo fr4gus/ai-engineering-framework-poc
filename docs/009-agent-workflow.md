@@ -353,6 +353,24 @@ When a Bolt is completed and accepted, the Engineering Manager MUST create the p
 
 ---
 
+## WF-RULE-006
+
+Every Bolt implementation MUST occur on a Bolt Branch whose name matches the Bolt name.
+
+---
+
+## WF-RULE-007
+
+All changes for a Bolt MUST be made on its Bolt Branch until the Bolt is accepted and the Engineering Manager creates the pull request.
+
+---
+
+## WF-RULE-008
+
+When a Bolt is completed and accepted, the Engineering Manager MUST create the pull request and include detailed change, problem, rework, fix, and validation notes in the PR description.
+
+---
+
 # 8. Escalation Rules
 
 ## To Planner

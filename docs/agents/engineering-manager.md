@@ -253,7 +253,6 @@ The EM has authority over:
 - Execution scheduling
 - Blocked state resolution
 - Reassignment of agents if needed
-- Closure readiness coordination
 - Bolt Branch verification before implementation
 - Pull request creation after Bolt acceptance
 
